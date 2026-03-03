@@ -21,6 +21,10 @@ public class Main {
         //    Mostrar el total almacenado.
         System.out.println("Número de entrenadores: "+uaxFC.contarEntrenadores());
 
+        // eliminar a un entrenador
+        uaxFC.registrarEntrenador(lamine);
+        uaxFC.eliminarEntrenador(lamine.getId());
+
 
         //    Probar una búsqueda existente y otra inexistente.
         System.out.println(uaxFC.buscarEntrenador(pingu.getId()));
