@@ -36,7 +36,7 @@ public class CentroDeportivo {
     public Entrenador buscarEntrenador(int id){
         Entrenador entrenadorBuscado = null;
         for (int i = 0 ; entrenadorBuscado == null && i < MAX_ENTRENADORES ; i++){
-            if (entrenadorBuscado != null && entrenadores[i].getId() == id ){
+            if (entrenadores[i] != null && entrenadores[i].getId() == id ){
                 entrenadorBuscado = entrenadores[i];
             }
         }
