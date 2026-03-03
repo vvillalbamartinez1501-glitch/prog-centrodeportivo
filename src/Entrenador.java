@@ -78,6 +78,7 @@ public class Entrenador {
         sb.append(String.format("%s - ",nombre));
         sb.append(String.format("Especialidad: %s - ",especialidad));
         sb.append(String.format("Años de experiencia: %d", aniosExperiencia));
+        sb.append("\n");
         return sb.toString();
     }
 
