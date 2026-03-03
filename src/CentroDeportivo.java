@@ -117,4 +117,37 @@ public class CentroDeportivo {
         }
         return contadorEntrenadores;
     }
+
+    /**
+     * metodo que elimina a un entrenador del array de entrenadores
+     * @param id id del entrenador a eliminar
+     * @return el entrenador eliminado o false si no lo eliminó
+     */
+    public Entrenador eliminarEntrenador(int id){
+        Entrenador entrenadorEliminado = null;
+        int posicionEntrenador;
+
+        posicionEntrenador = buscarIndiceEntrenador(id);
+        if (posicionEntrenador != -1){
+            entrenadorEliminado = entrenadores[posicionEntrenador];
+            entrenadores[posicionEntrenador] = null;
+        }
+        return entrenadorEliminado;
+    }
+
+    /**
+     * recorre el array de entrenadorees en busca del primer indice cuyo entrenador tenga el id dado como parámetro
+     * @param id el id que comparará con el resto de entrenadores en el array
+     * @return la el indice en el array del entrenador con id conicidente, -1 si no lo encontró
+     */
+
+    private int buscarIndiceEntrenador(int id){
+        int indiceEntrenador = -1;
+        for (int i = 0 ; indiceEntrenador == -1 && i < MAX_ENTRENADORES ; i++){
+            if (entrenadores[i] != null && entrenadores[i].getId() == id ){
+                indiceEntrenador = i;
+            }
+        }
+        return indiceEntrenador;
+    }
 }
