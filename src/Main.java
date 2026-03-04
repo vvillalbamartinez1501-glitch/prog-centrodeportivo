@@ -33,6 +33,7 @@ public class Main {
         uaxFC.eliminarEntrenador(lamine.getId());
 
 
+
         //    Probar una búsqueda existente y otra inexistente.
         System.out.println(uaxFC.buscarEntrenador(pingu.getId()));
         System.out.println(uaxFC.buscarEntrenador(lamine.getId()));
@@ -40,13 +41,9 @@ public class Main {
         // ordenar por id de mayor a menor
         System.out.println(uaxFC.mostrarEntrenadores());
 
-
-
-
-
-        uaxFC.ordenarEntrenadores();
         uaxFC.eliminarEntrenador(venus.getId());
 
+        uaxFC.ordenarEntrenadores_vis();
 
         System.out.println(uaxFC.mostrarEntrenadores());
 
