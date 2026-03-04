@@ -156,161 +156,74 @@ public class CentroDeportivo {
     }
 
     /**
-     * este metodo hace que en el array de entrenadores, no haya huecos vacios entre los entrenadores
+     * metodo que ordena el array de entrenadores en base a su id (de mayor a menor)
      */
 
-    public void juntarEntrenadores(){
-        for (int i = 0 ; i < MAX_ENTRENADORES ; i++){
-            if (entrenadores[i] == null){
-                for (int p = i ; p < MAX_ENTRENADORES ; p++){
-                    if (entrenadores[p] != null){
-                        entrenadores[i] = entrenadores[p];
-                        entrenadores[p] = null;
-                    }
-                }
-            }
-        }
-    }
-
-    public void ordenarEntrenadores2(){
-        juntarEntrenadores();
-        Entrenador entrenadorTemporal = null;
-        int posicionAComprobar;
-
-        for (int i = 0 ; i  < numeroEntrenadores ; i++){
-            if (entrenadores[i] != null){
-                posicionAComprobar = i;
-                for (int p =  posicionAComprobar; entrenadorTemporal == null && p < numeroEntrenadores ; p++){
-                    if  (entrenadores[p] != null){
-                        entrenadorTemporal = entrenadores[p];
-                        while(entrenadores[i].getId() < entrenadorTemporal.getId()){
-                            entrenadores[i] = entrenadores[i+1];
-                            entrenadores[i+1] = entrenadorTemporal;
-                            entrenadorTemporal = null;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void ordenarEntrenadores3(){
-        juntarEntrenadores();
-        Entrenador entrenadorTemporal;
-        int posicionAComprobar;
-        int posicionComparativa;
-        for (int i = 0 ; i <= numeroEntrenadores ; i++){
-            if (entrenadores[i] != null){
-                posicionAComprobar = i;
-                posicionComparativa = posicionAComprobar+1;
-                if (entrenadores[posicionComparativa] != null){
-                    if (entrenadores[posicionAComprobar].getId() > entrenadores[posicionComparativa].getId()){
-                        entrenadorTemporal = entrenadores[posicionAComprobar];
-                        entrenadores[posicionAComprobar] = entrenadores[posicionComparativa];
-                        entrenadores[posicionComparativa] = entrenadorTemporal;
-                    }
-                }
-            }
-        }
-        if (entrenadores[0].getId() < entrenadores[1].getId()){
-            entrenadorTemporal = entrenadores[0];
-            entrenadores[0] = entrenadores[1];
-            entrenadores[1] = entrenadorTemporal;
-        }
-    }
-
-    public void ordenarEntrenadores4(){
-        juntarEntrenadores();
-        Entrenador entrenadorTemporal;
-        int indiceSucesionCortada;
-        do{
-            indiceSucesionCortada = comprobarSucesionMayorAMenor();
-
-                //for (int i = indiceSucesionCortada; i < numeroEntrenadores; i++){
-                    if (indiceSucesionCortada > 0 && entrenadores[indiceSucesionCortada+=1] != null){
-                        if (entrenadores[indiceSucesionCortada].getId() < entrenadores[indiceSucesionCortada +=1].getId()){
-                            entrenadorTemporal = entrenadores[indiceSucesionCortada];
-                            entrenadores[indiceSucesionCortada] = entrenadores[indiceSucesionCortada +=1];
-                            entrenadores[indiceSucesionCortada + 1] = entrenadorTemporal;
-                        }
-                    }
-
-
-
-            indiceSucesionCortada = comprobarSucesionMayorAMenor();
-        } while (indiceSucesionCortada != -1);
-    }
-
-
-    public void ordenarEntrenadores5(){
-        juntarEntrenadores();
-        Entrenador entrenadorTemporal;
-        int indiceSucesionCortada;
-        int indiceAnterior;
-        do{
-            indiceSucesionCortada = comprobarSucesionMayorAMenor() -1;
-            indiceAnterior = indiceSucesionCortada +1;
-
-            if (indiceSucesionCortada > 0 && this.entrenadores[indiceSucesionCortada+=1] != null){
-                entrenadorTemporal = entrenadores[indiceSucesionCortada];
-                this.entrenadores[indiceSucesionCortada] = this.entrenadores[indiceAnterior];
-                this.entrenadores[indiceAnterior] = entrenadorTemporal;
-            }
-
-        } while (indiceSucesionCortada != -1);
-    }
-
     public void ordenarEntrenadores(){
-        juntarEntrenadores();
-        int posicionSucesionCortada = 0;
-        while(posicionSucesionCortada != -1){
-            posicionSucesionCortada = comprobarSucesionMayorAMenor();
-            if (posicionSucesionCortada != -1){
-                cambiarEntrenadoresDePosicion(posicionSucesionCortada,posicionSucesionCortada+1);
+        Entrenador entrenadorTemporal;
 
+        for (int i = 0 ; i < MAX_ENTRENADORES ; i++){
+            for (int j = i +1; j < MAX_ENTRENADORES; j++){
+                if (entrenadores[i] == null){
+                    entrenadores [i] = entrenadores[j];
+                    entrenadores[j] = null;
+                } else if (entrenadores[j] != null && entrenadores[i].getId() < entrenadores[j].getId()) {
+                    entrenadorTemporal = entrenadores[i];
+                    entrenadores[i] = entrenadores[j];
+                    entrenadores[j] = entrenadorTemporal;
+                }
             }
         }
     }
 
-    public int comprobarSucesionMayorAMenor(){
-        int sucesionCortada = -1;
-        int posicionAComprobar;
-        for (int i = 0 ; sucesionCortada == -1 && i <= numeroEntrenadores ; i++){
-            posicionAComprobar = i;
-            if (entrenadores[i].getId() < entrenadores[posicionAComprobar].getId()){
-                sucesionCortada = i;
+    /**
+     * metodo que ordena el array de entrenadores en base a su id (de mayor a menor)
+     */
+
+    public void ordenarEntrenadores_vis(){
+        for (int i = 0 ; i < MAX_ENTRENADORES ; i++){
+            for (int j = i +1; j < MAX_ENTRENADORES; j++){
+                if (entrenadores[i] == null){
+                    entrenadores [i] = entrenadores[j];
+                    entrenadores[j] = null;
+                } else if (entrenadores[j] != null && entrenadores[i].getId() < entrenadores[j].getId()) {
+                    cambiarEntrenadoresDePosicion(i,j);
+                }
             }
         }
-        return sucesionCortada;
     }
 
+    /**
+     * metodo temporal para imprimir el array de entrenadores, el id del entrenador en cada posición
+     *
+
+    public void imprimirArray(){
+        for (int i = 0; i < MAX_ENTRENADORES; i++) {
+            if (entrenadores[i] != null){
+                System.out.print("[");
+                System.out.print(entrenadores[i].getId());
+                System.out.print("]");
+            } else if (entrenadores[i] == null){
+                System.out.print("[");
+                System.out.print("nulo");
+                System.out.print("]");
+            }
+            System.out.print(" ");
+        }
+    }
+     */
+
+    /**
+     * metodo para efectuar un cambio simple entre elementos del array entrenadores
+     * @param posicion1 indice de un elemento del array a intercambiar
+     * @param posicion2 indice del otro elemento del array a intercambiar
+     */
     public void cambiarEntrenadoresDePosicion(int posicion1, int posicion2){
         Entrenador entrenadorTemporal;
         entrenadorTemporal = entrenadores[posicion1];
         entrenadores[posicion1] = entrenadores[posicion2];
         entrenadores[posicion2] = entrenadorTemporal;
     }
-
-
-
-    private Entrenador buscarEntrenadorDeMayorId(Entrenador[] entrenadoresTemporal){
-        Entrenador entrenadorDeMayorId = null;
-        for (int i = 0; entrenadorDeMayorId == null && i < entrenadoresTemporal.length ; i++){
-            if (entrenadoresTemporal[i] != null){
-                entrenadorDeMayorId =  entrenadoresTemporal[i];
-            }
-        }
-
-        for (int i = 0; i < entrenadoresTemporal.length ; i++){
-            if (entrenadoresTemporal[i] != null && entrenadoresTemporal[i].getId() > entrenadorDeMayorId.getId()){
-                entrenadorDeMayorId = entrenadoresTemporal[i];
-            }
-        }
-        return entrenadorDeMayorId;
-    }
-
-
-
 
     /**
      * recorre el array de entrenadorees en busca del primer indice cuyo entrenador tenga el id dado como parámetro
